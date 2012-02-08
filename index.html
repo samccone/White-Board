@@ -21,10 +21,9 @@
 </body>
 
   <script type='text/javascript'>
-  var socket = io.connect('http://localhost');
-	
 
-  var canvas = document.getElementById('go');
+var socket = io.connect(window.location.hostname);
+var canvas = document.getElementById('go');
 var ctx = canvas.getContext('2d');
 
 ctx.strokeStyle = "#FF0000";

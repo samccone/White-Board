@@ -1,11 +1,11 @@
-var app = require('express').createServer()
-  , io = require('socket.io').listen(app);
+var app = require('express').createServer();
+var socket = require("socket.io");
+var io = socket.listen(app);
 
-
-  io.configure(function () { 
-    io.set("transports", ["xhr-polling"]); 
-    io.set("polling duration", 10); 
-  });
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port);
