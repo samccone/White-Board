@@ -1,0 +1,8 @@
+{
+  "name": "white-board",
+  "version": "1",
+  "dependencies": {
+    "express": "2.5.7",
+    "socket.io": "0.8.7"
+  }
+}
