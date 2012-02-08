@@ -23,7 +23,7 @@ WB.app = (function(){
     ctx.strokeStyle = colorPicker.val();
     ctx.lineCap = "round"
     ctx.lineWidth = 15;
-    
+    setTwitter();
   }
 
   function setListeners() {
@@ -39,6 +39,9 @@ WB.app = (function(){
     socket.on('people_count',peopleOnline);
   }
 
+  function setTwitter() {
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  }
   function peopleOnline(data) {
     $('span','#people-online').html(data.count);
   }

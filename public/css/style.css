@@ -24,8 +24,42 @@ a.miniColors-trigger {
 }
 
 #people-online {
+  padding: 5px;
   color: #FFF;
   font-family: helvetica;
   font-size: 11px;
-  padding: 5px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  border-top: 1px solid #111;
+}
+
+#footer .inner {
+  padding: 10px;
+  color: #FFF;
+  font-family: helvetica;
+  font-size: 11px;
+}
+
+#footer .inner span {
+  line-height: 22px;
+}
+
+a, a:active, a:visited {
+  color: #2c8aff !important;
+}
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.cl {
+  clear: both;
 }
