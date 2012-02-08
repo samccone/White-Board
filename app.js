@@ -1,4 +1,5 @@
-var app = require('express').createServer();
+var express = require('express');
+var app = express.createServer();
 var socket = require("socket.io");
 var io = socket.listen(app);
 
@@ -6,6 +7,10 @@ io.configure(function () {
   io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
+
+app.use (
+  express.static(__dirname + '/public')
+);
 
 var port = process.env.PORT || 3000;
 app.listen(port);
