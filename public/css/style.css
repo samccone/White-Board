@@ -22,3 +22,10 @@ a.miniColors-trigger {
 #color-picker {
   display: none;
 }
+
+#people-online {
+  color: #FFF;
+  font-family: helvetica;
+  font-size: 11px;
+  padding: 5px;
+}

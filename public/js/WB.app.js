@@ -7,7 +7,6 @@ WB.app = (function(){
       colorPicker,
       startPos = {};
       mouseDown = false;
-      
 
   function init() {
     setObjects();
@@ -37,6 +36,11 @@ WB.app = (function(){
     canvas.bind('mousemove',drawSegment);
     canvas.bind('mouseup',function(e){ drawSegment(e); mouseDown=false;});
     socket.on('new_line',receiveLine);
+    socket.on('people_count',peopleOnline);
+  }
+
+  function peopleOnline(data) {
+    $('span','#people-online').html(data.count);
   }
 
   function receiveLine(data) {
