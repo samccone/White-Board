@@ -1,0 +1,84 @@
+<script src="/socket.io/socket.io.js"></script>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+	<script src="socket.io.js"></script>
+  <style type='text/css'>
+            #go
+        {
+            background-color:#000;
+        }
+  </style>
+  
+	
+  
+</head>
+<body>	
+  <canvas id="go" width='500px' height='500px'></canvas>
+</body>
+
+  <script type='text/javascript'>
+  var socket = io.connect('http://localhost');
+	
+
+  var canvas = document.getElementById('go');
+var ctx = canvas.getContext('2d');
+
+ctx.strokeStyle = "#FF0000";
+
+
+var startPos ={};
+var mouseDown = false;
+
+
+canvas.addEventListener('mousedown',function(e){mouseDown=true;startPos.x = e.layerX;startPos.y=e.layerY});
+
+
+canvas.addEventListener('mousemove',drawSegment);
+
+canvas.addEventListener('mouseup',function(e){
+    drawSegment(e)
+    mouseDown=false;
+});
+
+
+function drawSegment(e)
+{
+    if(mouseDown)
+    {
+	
+		
+		socket.emit("line",{'startX':startPos.x,'startY':startPos.y,'endX':e.layerX,'endY':e.layerY});
+		
+        ctx.beginPath();
+        ctx.moveTo(startPos.x,startPos.y);
+        ctx.lineTo(e.layerX, e.layerY);
+        ctx.closePath();  
+        ctx.stroke();
+        startPos.x = e.layerX;
+        startPos.y = e.layerY;
+
+    }
+}
+
+
+
+	
+	socket.on('new_line',function(data){
+		
+		  	ctx.beginPath();
+	        ctx.moveTo(data.line.startX,data.line.startY);
+	        ctx.lineTo(data.line.endX, data.line.endY);
+	        ctx.closePath();  
+	        ctx.stroke();
+		
+	});
+	
+	
+  </script>
+
+</html>
+
