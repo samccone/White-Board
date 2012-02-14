@@ -4,6 +4,13 @@ var socket = require("socket.io");
 var io = socket.listen(app);
 var peopleOnline = 0;
 
+Array.prototype.remove = function(item){
+  for(var i=0;i<this.length;++i){
+    if(item == this[i]) {
+      this.splice(i,1);
+    }
+  }
+}
 
 io.configure(function () {
   io.set("transports", ["xhr-polling"]);
@@ -35,7 +42,9 @@ function setListeners(socket) {
     });
     socket.on('disconnect', function() { 
       peopleOnline--; 
-      emitPeopleCount(); 
+      emitPeopleCount();
+      sockets.remove(socket);
+      console.log(sockets.length);
     });
 }
 
